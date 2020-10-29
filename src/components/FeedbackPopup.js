@@ -1,10 +1,13 @@
 import React from 'react'
+//import {useRecoilState} from 'recoil'
+import {useAtom} from 'jotai'
+
 import './FeedbackPopup.css'
-import {useRecoilState} from 'recoil'
 import feedbackState from '../atoms/feedbackState.js'
 
 function FeedbackPopup() {
-	const [feedback, setFeedback] = useRecoilState(feedbackState)
+	//const [feedback, setFeedback] = useRecoilState(feedbackState)
+	const [feedback, setFeedback] = useAtom(feedbackState)
 	
 	const closePopup = () => {	
 		setFeedback({isVisible: false})

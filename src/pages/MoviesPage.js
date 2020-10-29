@@ -1,13 +1,19 @@
 import React from 'react'
 import {useQuery} from 'react-query'
+//import {useSetRecoilState} from 'recoil'
+import {useAtom} from 'jotai'
+
+
 import './MoviesPage.css'
 import TileList from '../components/TileList.js'
 import feedbackState from '../atoms/feedbackState.js'
-import {useSetRecoilState} from 'recoil'
+
 import Converter from '../components/Converter.js'
 
 function MoviesPage() {
-	const setFeedback = useSetRecoilState(feedbackState)
+	//const setFeedback = useSetRecoilState(feedbackState)
+	const [feedback, setFeedback] = useAtom(feedbackState)
+
 	const {data: trendingMoviesData, isLoading: trendingMoviesIsLoading, error: trendingMoviesError} = useQuery('trending', async () => {
 		const res = await fetch(`${process.env.REACT_APP_TMDB_BASE_URL}/trending/movie/week?api_key=${process.env.REACT_APP_TMDB_KEY}`)
 		const data = await res.json()

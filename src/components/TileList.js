@@ -5,6 +5,8 @@ import TileListSkeleton from './TileListSkeleton.js'
 
 function TileList({data, title, isLoading}) {
 
+	console.log(title + ' data', data)
+
 	if (isLoading) return <TileListSkeleton/>
 
     return (

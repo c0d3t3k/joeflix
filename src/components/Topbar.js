@@ -24,7 +24,7 @@ function Topbar() {
         	<ul className="topbar__cont">
         		<li className="topbar__item topbar__item--logo">
                     <Link to="/">
-                        <h1>JOEFLIX</h1>
+                        <h1>JOTAIFLIX</h1>
                     </Link>
                 </li>
         		<li className="topbar__item">

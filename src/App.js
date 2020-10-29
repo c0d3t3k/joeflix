@@ -1,9 +1,13 @@
 import React, {Suspense} from 'react'
 import {HashRouter as Router, Switch, Route} from 'react-router-dom'
+//import {RecoilRoot} from 'recoil'
+import { Provider } from 'jotai'
+import { ReactQueryDevtools } from 'react-query-devtools'
+
 import './App.css'
 import Topbar from './components/Topbar.js'
 import FeedbackPopup from './components/FeedbackPopup.js'
-import {RecoilRoot} from 'recoil'
+
 const HomePage = React.lazy(() => import('./pages/HomePage.js'));
 const VideoPage = React.lazy(() => import('./pages/VideoPage.js'));
 const ShowsPage = React.lazy(() => import('./pages/ShowsPage.js'));
@@ -11,7 +15,8 @@ const MoviesPage = React.lazy(() => import('./pages/MoviesPage.js'));
 
 function App() {
     return (
-        <RecoilRoot>
+        /* <RecoilRoot> */
+        <Provider>
             <Router>
                 <FeedbackPopup/>
                 <Suspense fallback={<div></div>}>
@@ -33,8 +38,10 @@ function App() {
                         </Route>
                     </Switch>
                 </Suspense>
+                <ReactQueryDevtools initialIsOpen={true} />
             </Router>
-        </RecoilRoot>
+        </Provider>
+        /* </RecoilRoot> */
     )
 }
 

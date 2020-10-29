@@ -1,14 +1,20 @@
 import React from 'react'
-import './ShowsPage.css'
+
 import {useQuery} from 'react-query'
+//import {useSetRecoilState} from 'recoil'
+import {useAtom} from 'jotai'
+
+
+import './ShowsPage.css'
 import Hero from '../components/Hero.js'
 import TileList from '../components/TileList.js'
 import feedbackState from '../atoms/feedbackState.js'
-import {useSetRecoilState} from 'recoil'
 import Converter from '../components/Converter.js'
 
 function ShowsPage() {
-	const setFeedback = useSetRecoilState(feedbackState)
+	//const setFeedback = useSetRecoilState(feedbackState)
+	const [feedback, setFeedback] = useAtom(feedbackState)
+
 	const {data: heroData, isLoading: heroIsLoading, error: heroError} = useQuery('heroShow', async () => {
 		const response = await fetch(`${process.env.REACT_APP_TMDB_BASE_URL}/tv/713?api_key=${process.env.REACT_APP_TMDB_KEY}`)
 		const data = await response.json()

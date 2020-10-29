@@ -1,18 +1,30 @@
 import React, {Suspense} from 'react'
 import {useQuery} from 'react-query'
+
+
 import './HomePage.css'
 import Hero from '../components/Hero.js'
 import TileList from '../components/TileList.js'
 import feedbackState from '../atoms/feedbackState.js'
-import {useSetRecoilState} from 'recoil'
+//import {useSetRecoilState} from 'recoil'
+import {useAtom} from 'jotai'
 import Converter from '../components/Converter.js'
 const BigTile = React.lazy(() => import('../components/BigTile.js'));
 
+
+
+
 function HomePage() {
-	const setFeedback = useSetRecoilState(feedbackState)
+
+	//export const history = useAtom(historyInnerAtom);
+	
+	//const setFeedback = useSetRecoilState(feedbackState)
+	const [feedback, setFeedback] = useAtom(feedbackState)
+
 	const {data: heroData, isLoading: heroIsLoading, error: heroError} = useQuery('hero', async () => {
 		const res = await fetch(`${process.env.REACT_APP_TMDB_BASE_URL}/movie/558?api_key=${process.env.REACT_APP_TMDB_KEY}`)
 		const data = await res.json()
+		console.log('data', data)
 		return Converter.convertToTile('movie', data)
 	})
 	const {data: popularData, isLoading: popularIsLoading, error: popularError} = useQuery('popular', async () => {
