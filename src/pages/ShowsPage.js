@@ -4,7 +4,6 @@ import {useQuery} from 'react-query'
 //import {useSetRecoilState} from 'recoil'
 import {useAtom} from 'jotai'
 
-
 import './ShowsPage.css'
 import Hero from '../components/Hero.js'
 import TileList from '../components/TileList.js'
@@ -18,11 +17,13 @@ function ShowsPage() {
 	const {data: heroData, isLoading: heroIsLoading, error: heroError} = useQuery('heroShow', async () => {
 		const response = await fetch(`${process.env.REACT_APP_TMDB_BASE_URL}/tv/713?api_key=${process.env.REACT_APP_TMDB_KEY}`)
 		const data = await response.json()
+		
 		return Converter.convertToTile('tv', data)
 	})
 	const {data: popularData, isLoading: popularIsLoading, error: popularError} = useQuery('popShow', async () => {
 		const res = await fetch(`${process.env.REACT_APP_TMDB_BASE_URL}/tv/popular?api_key=${process.env.REACT_APP_TMDB_KEY}`)
 		const data = await res.json()
+		console.log('Show Data', data)
 		return Converter.convertShowsToTiles(data.results.splice(0, 5))
 	})
 	const {data: onData, isLoading: onIsLoading, error: onError} = useQuery('onShow', async () => {

@@ -1,7 +1,7 @@
 import React, {Suspense} from 'react'
 import {useQuery} from 'react-query'
 
-
+import {historyAtom, favoritesAtom} from '../atoms/state'
 import './HomePage.css'
 import Hero from '../components/Hero.js'
 import TileList from '../components/TileList.js'
@@ -21,10 +21,13 @@ function HomePage() {
 	//const setFeedback = useSetRecoilState(feedbackState)
 	const [feedback, setFeedback] = useAtom(feedbackState)
 
+	const [history, setHistory] = useAtom(historyAtom)
+	const [favorites, setFavorites] = useAtom(favoritesAtom)
+
 	const {data: heroData, isLoading: heroIsLoading, error: heroError} = useQuery('hero', async () => {
 		const res = await fetch(`${process.env.REACT_APP_TMDB_BASE_URL}/movie/558?api_key=${process.env.REACT_APP_TMDB_KEY}`)
 		const data = await res.json()
-		console.log('data', data)
+		//console.log('data', data)
 		return Converter.convertToTile('movie', data)
 	})
 	const {data: popularData, isLoading: popularIsLoading, error: popularError} = useQuery('popular', async () => {
@@ -73,6 +76,12 @@ function HomePage() {
         	</Suspense>
         	<div className="tlist__wrapper tlist__wrapper--tall">
         		<TileList title="New releases" data={nowData} isLoading={nowIsLoading}/>
+        	</div>
+			<div className="tlist__wrapper" fallback={<div></div>}>
+        		<TileList title="Favorites" data={history} isLoading={false}/>
+        	</div>
+			<div className="tlist__wrapper" fallback={<div></div>}>
+        		<TileList title="History" data={favorites} isLoading={false}/>
         	</div>
         </div>
     )

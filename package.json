@@ -3,8 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@c0d3t3k/jotai-devtools": "git+ssh://git@bitbucket.org:commandperception/jotai-devtools.git",
+    "@c0d3t3k/jotai-optics": "git+ssh://git@github.com:c0d3t3k/jotai-optics.git",
     "jotai": "^0.10.1",
     "lodash": "^4.17.20",
+    "optics-ts": "^1.1.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-icons": "^3.11.0",

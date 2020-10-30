@@ -13,6 +13,7 @@ import Converter from '../components/Converter.js'
 function MoviesPage() {
 	//const setFeedback = useSetRecoilState(feedbackState)
 	const [feedback, setFeedback] = useAtom(feedbackState)
+	
 
 	const {data: trendingMoviesData, isLoading: trendingMoviesIsLoading, error: trendingMoviesError} = useQuery('trending', async () => {
 		const res = await fetch(`${process.env.REACT_APP_TMDB_BASE_URL}/trending/movie/week?api_key=${process.env.REACT_APP_TMDB_KEY}`)
