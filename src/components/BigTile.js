@@ -1,10 +1,22 @@
 import React from 'react'
 import './BigTile.css'
 import {Link} from 'react-router-dom'
+import {useAtom} from 'jotai'
+import { focus } from "@c0d3t3k/jotai-optics";
+
+import {historyAtom} from '../atoms/state'
+import {containsOptic} from '../utils/optics'
 
 function BigTile({data, isLoading}) {
 
+	const [isInHistory, setIsInHistory] = 
+		useAtom(focus(historyAtom, optic => optic.compose(containsOptic(data))))
+
 	if (isLoading) return <div className="btile__loading"></div>
+
+	const playMedia = () => {
+		setIsInHistory(!isInHistory);
+	}
 
     return (
         <div className="btile">
@@ -14,7 +26,7 @@ function BigTile({data, isLoading}) {
         		<div className="btile__info">
         			<h3 className="btile__title">{data.title}</h3>
         			<div className="btns">
-	    				<Link to={`/playing/${data? data.type : ''}/${data ? data.id : ''}`} className="btn btn--play">
+	    				<Link onClick={() => playMedia()} to={`/playing/${data? data.type : ''}/${data ? data.id : ''}`} className="btn btn--play">
 	    					<img className="btn__icon btn__icon--play" src={require('../images/streamline-icon-controls-play@15x15.png')} alt=""/>
 	    					Play
 	    				</Link>

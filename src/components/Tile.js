@@ -1,5 +1,5 @@
-import * as O from 'optics-ts';
-import * as _ from 'lodash';
+
+
 
 import React from 'react'
 import {Link, useHistory} from 'react-router-dom'
@@ -8,35 +8,13 @@ import { useAtom, atom } from 'jotai'
 import { focus, useAtomArrayFamily } from "@c0d3t3k/jotai-optics";
 
 import {historyAtom, favoritesAtom} from '../atoms/state'
+import {containsOptic} from '../utils/optics'
 import './Tile.css'
 import { findIndex } from 'lodash';
 
 
 // This is a utility
-const containsOptic = (item) => 
-	O.optic()
-		.iso(
-			// Lens that is isomorphically converting an array given an item 
-			// to a boolean determining whether the array contains that item.
-			(val) => ({ 
-				contained: (_.findIndex(val, (currentItem) => item.id == currentItem.id) > -1),
-				value: val
-			}),
-			(obj) => {
-				const collection = _.clone(obj.value);
 
-				const index = _.findIndex(collection, (currentItem) => item.id == currentItem.id);
-
-				if(obj.contained && index < 0) {
-					collection.push(item);
-				} else if(!obj.contained && index > -1) {
-					collection.splice(index, 1);
-				}
-
-				return collection;
-			}
-		)
-		.prop('contained');
 
 function Tile({data}) {
 

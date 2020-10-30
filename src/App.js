@@ -19,7 +19,7 @@ const MoviesPage = React.lazy(() => import("./pages/MoviesPage.js"));
 function JotaiDebugger() {
   return (
     <>
-      <JotaiDevtools name={`Feedback State`} atom={feedbackState} />
+      {/* <JotaiDevtools name={`Feedback State`} atom={feedbackState} /> */}
       <JotaiDevtools name={`Favorites`} atom={favoritesAtom} />
       <JotaiDevtools name={`History`} atom={historyAtom} />
     </>

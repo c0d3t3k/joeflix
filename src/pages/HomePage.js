@@ -1,5 +1,6 @@
 import React, {Suspense} from 'react'
 import {useQuery} from 'react-query'
+import {useAtom} from 'jotai'
 
 import {historyAtom, favoritesAtom} from '../atoms/state'
 import './HomePage.css'
@@ -7,7 +8,6 @@ import Hero from '../components/Hero.js'
 import TileList from '../components/TileList.js'
 import feedbackState from '../atoms/feedbackState.js'
 //import {useSetRecoilState} from 'recoil'
-import {useAtom} from 'jotai'
 import Converter from '../components/Converter.js'
 const BigTile = React.lazy(() => import('../components/BigTile.js'));
 
@@ -25,7 +25,7 @@ function HomePage() {
 	const [favorites, setFavorites] = useAtom(favoritesAtom)
 
 	const {data: heroData, isLoading: heroIsLoading, error: heroError} = useQuery('hero', async () => {
-		const res = await fetch(`${process.env.REACT_APP_TMDB_BASE_URL}/movie/558?api_key=${process.env.REACT_APP_TMDB_KEY}`)
+		const res = await fetch(`${process.env.REACT_APP_TMDB_BASE_URL}/movie/577922?api_key=${process.env.REACT_APP_TMDB_KEY}`)
 		const data = await res.json()
 		//console.log('data', data)
 		return Converter.convertToTile('movie', data)
@@ -65,6 +65,12 @@ function HomePage() {
     return (
         <div className="home">
         	<Hero data={heroData} isLoading={heroIsLoading} list={mostPopular}/>
+			<div className="tlist__wrapper" fallback={<div></div>}>
+        		<TileList title="Favorites" data={favorites} isLoading={false}/>
+        	</div>
+			<div className="tlist__wrapper" fallback={<div></div>}>
+        		<TileList title="History" data={history} isLoading={false}/>
+        	</div>
         	<div className="tlist__wrapper" fallback={<div></div>}>
         		<TileList title="Trending now" data={trendingMoviesData} isLoading={trendingMoviesIsLoading}/>
         	</div>
@@ -77,12 +83,7 @@ function HomePage() {
         	<div className="tlist__wrapper tlist__wrapper--tall">
         		<TileList title="New releases" data={nowData} isLoading={nowIsLoading}/>
         	</div>
-			<div className="tlist__wrapper" fallback={<div></div>}>
-        		<TileList title="Favorites" data={history} isLoading={false}/>
-        	</div>
-			<div className="tlist__wrapper" fallback={<div></div>}>
-        		<TileList title="History" data={favorites} isLoading={false}/>
-        	</div>
+			
         </div>
     )
 }
