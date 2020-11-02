@@ -1084,9 +1084,9 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
-"@c0d3t3k/jotai-devtools@git+ssh://git@bitbucket.org:commandperception/jotai-devtools.git":
+"@c0d3t3k/jotai-devtools@git+ssh://git@github.com:c0d3t3k/jotai-devtools.git":
   version "0.10.1"
-  resolved "git+ssh://git@bitbucket.org:commandperception/jotai-devtools.git#44770a028dd7d28aaadb4f776d85eaee0499ead7"
+  resolved "git+ssh://git@github.com:c0d3t3k/jotai-devtools.git#44770a028dd7d28aaadb4f776d85eaee0499ead7"
   dependencies:
     jotai "^0.10.1"
     moment "^2.29.1"
