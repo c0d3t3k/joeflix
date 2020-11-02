@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@c0d3t3k/jotai-devtools": "git+ssh://git@github.com:c0d3t3k/jotai-devtools.git",
-    "@c0d3t3k/jotai-optics": "git+ssh://git@github.com:c0d3t3k/jotai-optics.git",
+    "@c0d3t3k/jotai-devtools": "git+https://github.com/c0d3t3k/jotai-devtools.git",
+    "@c0d3t3k/jotai-optics": "git+https://github.com/c0d3t3k/jotai-optics.git",
     "jotai": "^0.10.1",
     "lodash": "^4.17.20",
     "optics-ts": "^1.1.0",
