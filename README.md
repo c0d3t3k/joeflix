@@ -10,6 +10,8 @@ Check it live [here](https://codesandbox.io/s/damp-river-tcsp7).
 
 NOTE: Don't forget to add an `.env` file with the following entries
 
+```
 REACT_APP_TMDB_KEY = <Your API Key Here!/>
 REACT_APP_TMDB_BASE_URL = https://api.themoviedb.org/3
 REACT_APP_TMDB_IMG_URL = https://image.tmdb.org/t/p
+```
