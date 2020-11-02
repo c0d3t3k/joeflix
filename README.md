@@ -5,7 +5,7 @@ A Netflix clone using React, React Router, React Query, [TMDB API](https://devel
 
 There is a [Dev.to article](https://dev.to/c0d3t3k/jotai-now-with-optics-29ld) discussing this functionality.
 
-Check it live [here](https://codesandbox.io/s/damp-river-tcsp7).
+Check it live [here](https://codesandbox.io/s/jotaiflix-optics-9qch0).
 
 NOTE: Don't forget to add an `.env` file with the following entries
 
