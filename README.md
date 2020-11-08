@@ -1,4 +1,4 @@
-
+#JOTAIFLIX
 ![alt text](https://raw.githubusercontent.com/c0d3t3k/joeflix/jotai-optics/JotaiOptics.gif)
 
 A Netflix clone using React, React Router, React Query, [TMDB API](https://developers.themoviedb.org/4/getting-started/authorization), [Jotai](https://github.com/pmndrs/jotai) and [jotai-optics](https://github.com/merisbahti/jotai-optics)
